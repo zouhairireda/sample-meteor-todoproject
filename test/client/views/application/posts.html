@@ -1,0 +1,19 @@
+<template name="posts">
+	<h1>Liste des posts</h1>
+	{{#each posts}}
+		{{> post}}
+	{{/each}}
+	<button class="alert">Click here to alert</button>
+	<a href="{{pathFor route='accueil'}}">Home</a>
+</template>
+
+<template name="post">
+	<div class="post">
+		{{#if hide}}
+			Ce post est caché
+		{{else}}
+			{{title}}, par {{{setAuthor}}}
+		{{/if}}
+	</div>
+	{{initNumber 4}}
+</template>

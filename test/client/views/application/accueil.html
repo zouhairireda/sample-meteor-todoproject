@@ -1,0 +1,8 @@
+<template name="accueil">
+	<h2>Home</h2>
+	<ul>
+		{{#each posts}}
+			<li><b>{{title}}</b>, <em>{{ author}}</em></li>
+		{{/each}}
+	</ul>
+</template>

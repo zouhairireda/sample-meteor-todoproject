@@ -1,0 +1,16 @@
+<template name="form">
+	<h2>Accueil</h2>
+	<h3>Nouveau post</h3>
+	<form>
+		<label>Auteur</label><input type="text" name="auteur" /><br />
+		<label>Titre</label><input type="text" name="titre" /><br />
+		<label>Contenu</label><textarea name="contenu"></textarea><br />
+		<button type="submit">Envoyer</button>
+	</form>
+	<h3>Liste des posts</h3>
+	<ul>
+		{{#each posts}}
+			<li><b>{{title}}</b>, par <em>{{author}}</em></li>
+		{{/each}}
+	</ul>
+</template>
