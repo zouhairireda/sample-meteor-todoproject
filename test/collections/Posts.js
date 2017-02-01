@@ -23,4 +23,32 @@ Meteor.methods({
 		}
 		return Posts.insert(doc);
 	}
-})
+});
+
+Posts.attachSchema(new SimpleSchema({
+	title: {
+		type: String,
+		max: 200
+	},
+	author: {
+		type: String,
+		max: 200
+	},
+	content: {
+		type: String,
+		max: 2000
+	},
+	createdAt: {
+		type: Date,
+		denyUpdate: true,
+		autoValue: function() {
+			if(this.isInsert) {
+				return new Date;
+			} else if(this.isUpsert) {
+				return {$setOnInsert: new Date};
+			} else {
+				this.unset();
+			}
+		}
+	}
+}));
