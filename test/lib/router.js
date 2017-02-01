@@ -4,6 +4,9 @@ Router.configure({
 
 Router.route('/', {
     name: "accueil",
+    action: function() {
+    	Session.set("title", "MeteorJS Course");
+    },
 	data: function(){
 
 		var posts = Posts.find();
@@ -69,6 +72,20 @@ Router.route('/register', {
 });
 
 Router.route('/login');
+
+Router.route('/addPost');
+
+Router.onBeforeAction(function() {
+	if(!Meteor.userId()) {
+		this.render("login");
+	} else {
+		this.next();
+	}
+}, {
+	except: [
+		"login"
+	]
+});
 
 /*Router.route('/add/:num1/:num2', {
 	name: "add",

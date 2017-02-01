@@ -1,5 +1,5 @@
 <template name="mainLayout">
-	<h1>Mon site</h1>
+	<h1>{{setTitle}}</h1>
 	<a href="{{pathFor route='accueil'}}">Go to home</a>
 	<a href="{{pathFor route='form'}}">Go to form</a>
 	{{#if currentUser}}
@@ -14,6 +14,6 @@
 	<div>
 		{{> yield}}
 	</div>
-
+	<a href="{{pathFor route='addPost'}}">Add form</a>
 </template>
 

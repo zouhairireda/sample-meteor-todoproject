@@ -28,15 +28,24 @@ Meteor.methods({
 Posts.attachSchema(new SimpleSchema({
 	title: {
 		type: String,
+		label: "Titre",
 		max: 200
 	},
 	author: {
 		type: String,
+		label: "Auteur",
 		max: 200
 	},
 	content: {
 		type: String,
-		max: 2000
+		label: "Contenu",
+		max: 2000,
+		autoform: {
+			afFieldInput: {
+				type: "textarea",
+				rows: 10
+			}
+		}
 	},
 	createdAt: {
 		type: Date,
@@ -49,6 +58,9 @@ Posts.attachSchema(new SimpleSchema({
 			} else {
 				this.unset();
 			}
+		},
+		autoform: {
+			omit: true
 		}
 	}
 }));

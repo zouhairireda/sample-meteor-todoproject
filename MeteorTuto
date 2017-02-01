@@ -34,3 +34,34 @@ meteor add accounts-ui : for user management in web page
 Schema Model Domain : meteor add aldeed:SimpleSchema
 Attach schema : collection2
 generate forms : autoform
+
+Posts.attachSchema(new Schema({
+	field: {
+	type: ..,
+	label: ..,
+	max:..
+	...
+	},
+	date: {
+	type:Date,
+	denyUpdate:..,
+	autoValue: function() {
+	if(this.isInsert) {} else if(this.isUpsert) {{$setOnInsert: new Date}} else {this.unset()}
+	}
+	}
+}));
+we can add autoform's field to customize the field ui : autoform: {afFieldInput: ..} , autoform: {omit: true}
+HOOK (to make a process after successfull sending of form for example)
+adding Hook of AutoForm:
+	AutoForm.hooks({idForm: {onSuccess: function(formType, result) {...  (ex: Router.go('home'))}}})
+
+Using Session in Meteor : Session.set('name', 'value') // Session.get('name')
+Meteor.userId() (session id for authenticated user)
+Adding hook in Router (for example, for filtering to login without session login id)
+Router.onBeforeAction(function(){
+	if(!Meteor.userId()){
+	this.render("login") //show login page
+	} else {this.next()} //continue chain
+},{
+	except: ["login"]
+},{only: ["..."]})
