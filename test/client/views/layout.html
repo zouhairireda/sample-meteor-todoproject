@@ -2,7 +2,18 @@
 	<h1>Mon site</h1>
 	<a href="{{pathFor route='accueil'}}">Go to home</a>
 	<a href="{{pathFor route='form'}}">Go to form</a>
+	{{#if currentUser}}
+		<p>
+			<a class="logout">Log out</a>
+		</p>
+	{{else}}
+		<p>
+			<a href="{{pathFor route='login'}}">Login</a>
+		</p>
+	{{/if}}
 	<div>
 		{{> yield}}
 	</div>
+
 </template>
+

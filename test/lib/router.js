@@ -18,7 +18,16 @@ Router.route('/', {
 });
 
 Router.route('/form', {
-	name: "form"
+	name: "form",
+	data: function() {
+		var posts = Posts.find();
+		return {
+			posts: posts
+		};
+	},
+	waitOn: function() {
+		return Meteor.subscribe("allPostHeaders");
+	}
 	/*data: function(){
 
 	}*/
@@ -53,7 +62,13 @@ Router.route('/posts', {
 			]
 		};
 	}
-})
+});
+
+Router.route('/register', {
+	name: "register"
+});
+
+Router.route('/login');
 
 /*Router.route('/add/:num1/:num2', {
 	name: "add",

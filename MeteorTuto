@@ -14,3 +14,23 @@ Events : 'click .class' / 'click #id' / 'submit form'
 
 Pour affecter des autorisations sur une action (insert, update...) : ajout de Posts.allow({insert: ...})
 Pour effectuer cela coté serveur, il faut rajouter : Meteor.methods({"name": function}) et depuis le client: Meteor.call("name", doc, callback)
+
+Normally: event => "submit form": function(e) {}
+//---------------------------------------------------------------------
+Users:
+meteor add accounts-base accounts-password
+Now : event => "submit form": function(e, template) {}
+Accounts.createUser(user, function(err) {}) // persist correct user
+Meteor.users (collection of users) // {{currentUser}}
+throw new Meteor.Error(numStatus, string);
+
+Router.go(nameOfRoute) //redirection
+User validation (server) : Accounts.validateNewUser(function(user) {...})
+User Collection => for Accounts
+User login => for Meteor
+>>>> Meteor.loginWithPassword({username?email:user}, password, callback)
+meteor add accounts-ui : for user management in web page
+
+Schema Model Domain : meteor add aldeed:SimpleSchema
+Attach schema : collection2
+generate forms : autoform
